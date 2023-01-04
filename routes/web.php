@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,4 +29,13 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+
+// POSTS
+
+Route::get('/posts', [PostController::class, 'index']);
+
+Route::get('/posts/{id}', [PostController::class, 'show']);
+
+
 require __DIR__.'/auth.php';
+
