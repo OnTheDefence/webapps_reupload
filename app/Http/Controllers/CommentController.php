@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Comment;
 
 class CommentController extends Controller
 {
@@ -34,7 +35,19 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'content' => 'required',
+        ]);
+
+        $a = new Comment;
+        $a->content = $validatedData['content'];
+        $a->author_id = $request->user()->id;
+        $a->post_id = $request->post_id;
+        $a->likes = 0;
+        $a->save();
+
+        session()->flash('message', 'comment created');
+        return redirect()->route('single_post', ['id' => $request->post_id]);
     }
 
     /**
@@ -79,6 +92,10 @@ class CommentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $comment = Comment::find($id);
+        $post_id = $comment->post_id;
+        $comment->delete();
+        session()->flash('message', 'comment deleted');
+        return redirect()->route('single_post', ['id' => $post_id])->with('message', 'Comment was deleted.');
     }
 }

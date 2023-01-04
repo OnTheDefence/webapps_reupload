@@ -5,17 +5,11 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <div class="text-base">
-                        <div style="font-size: 1.75rem;">
-                            {{ "Create Post" }}
+                        <div style="font-size: 1.25rem;">
+                            {{ "Make a comment" }}
                         </div>
-                        <form method="post" action="{{ route('post_store') }}" class="mt-6 space-y-6">
+                        <form method="post" action="{{ route('comment_store', ['id' => $post_id]) }}" class="mt-6 space-y-6">
                             @csrf
-                    
-                            <div>
-                                <x-input-label for="title" :value="__('Title')" />
-                                <x-text-input id="title" name="title" type="text" class="mt-1 block w-full"/>
-                                <x-input-error class="mt-2" :messages="$errors->get('title')" />
-                            </div>
                     
                             <div>
                                 <x-input-label for="content" :value="__('Content')" />
@@ -27,7 +21,7 @@
                                 <x-primary-button>{{ __('Save') }}</x-primary-button>
                                 <button type="button" wire:click="openDiv" class="float-right">{{'Cancel'}}</button>
                     
-                                @if (session('status') === 'post created')
+                                @if (session('status') === 'comment created')
                                     <p
                                         x-data="{ show: true }"
                                         x-show="show"
@@ -37,6 +31,11 @@
                                     >{{ __('Saved.') }}</p>
                                 @endif
                             </div>
+
+                            
+                            {{ csrf_field() }}
+                            <input type='hidden' name='author_id' value={{$user_id}}>
+                            <input type='hidden' name='post_id' value={{$post_id}}>
                         </form>
                     </div>
                 </div>
@@ -50,8 +49,8 @@
         <button type="button" wire:click="openDiv">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-100 bg-gray-200">
-                    <div class="text-base text-white" style="font-size: 1.75rem;">
-                        Create Post
+                    <div class="text-base text-white" style="font-size: 1.25rem;">
+                        {{ "Make a comment" }}
                     </div>
                 </div>
             </div>

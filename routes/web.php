@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\CommentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,12 +34,16 @@ Route::get('/posts/create', [PostController::class, 'create'])->middleware(['aut
 
 Route::post('/posts', [PostController::class, 'store'])->middleware(['auth', 'verified'])->name('post_store');
 
-Route::get('/posts/{id}', [PostController::class, 'show'])->middleware(['auth', 'verified']);
+Route::get('/posts/{id}', [PostController::class, 'show'])->middleware(['auth', 'verified'])->name('single_post');
 
 Route::get('/{id}/posts', [ProfileController::class, 'posts'])->middleware(['auth', 'verified'])->name('my_posts');
 
+Route::delete('/posts/{id}/delete', [PostController::class, 'destroy'])->middleware(['auth', 'verified'])->name('delete_post');
 
-Route::view('create-post', 'livewire.home');
+
+Route::post('/posts/{id}/comment', [CommentController::class, 'store'])->middleware(['auth', 'verified'])->name('comment_store');
+
+Route::delete('/posts/{id}/comment/delete', [CommentController::class, 'destroy'])->middleware(['auth', 'verified'])->name('delete_comment');
 
 
 

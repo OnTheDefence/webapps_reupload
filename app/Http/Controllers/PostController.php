@@ -15,7 +15,8 @@ class PostController extends Controller
 
     public function index()
     {
-        $posts = Post::paginate(5);
+        $posts = Post::get()->sortDesc();
+        $posts = collect($posts)->paginate(5);
         return view('posts.index', ['posts' => $posts]);
     }
 
@@ -50,7 +51,7 @@ class PostController extends Controller
         $a->save();
 
         session()->flash('message', 'post created');
-        return redirect()->route('posts');
+        return redirect()->route('my_posts', ['id' => $request->user()->id]);
     }
 
     /**
@@ -97,6 +98,10 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post = Post::find($id);
+        $user_id = $post->author_id;
+        $post->delete();
+        session()->flash('message', 'post deleted');
+        return redirect()->route('my_posts', ['id' => $user_id])->with('message', 'Post was deleted.');
     }
 }
