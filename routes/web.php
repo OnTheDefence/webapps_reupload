@@ -38,6 +38,8 @@ Route::get('/posts/{id}', [PostController::class, 'show'])->middleware(['auth', 
 Route::get('/{id}/posts', [ProfileController::class, 'posts'])->middleware(['auth', 'verified'])->name('my_posts');
 
 
+Route::view('create-post', 'livewire.home');
+
 
 
 

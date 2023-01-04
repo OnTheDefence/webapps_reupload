@@ -8,7 +8,7 @@
             <button>
         </div> --}}
     </x-slot>
-
+    @livewire('create-post')
     @if ($posts->total() > 0)
         @foreach ($posts as $post)
         <div class="py-6">

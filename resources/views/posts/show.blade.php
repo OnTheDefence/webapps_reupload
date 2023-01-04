@@ -12,7 +12,6 @@
             <div class="text-base py-4">
                 {{ $post->content }}
             </div>
-
         </h2>
     </x-slot>
 
