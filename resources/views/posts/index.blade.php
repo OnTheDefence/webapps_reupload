@@ -1,12 +1,12 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight float-left">
+        <h2 class="font-semibold text-gray-800 dark:text-gray-200 leading-tight float-left" style="font-size: 2.25rem;">
             {{ __('Posts') }}
         </h2>
 
-        <div class="float-right">
+        {{-- <div class="float-right">
             <button>
-        </div>
+        </div> --}}
     </x-slot>
 
     @if ($posts->total() > 0)
@@ -18,10 +18,9 @@
                         <div class="p-6 text-gray-900 dark:text-gray-100">
                             <div class="text-base">
                                 {{ $post->title }}
-                            </div>
-
-                            <div class="text-xs">
-                                {{ $post->user->name }}
+                                <div class="text-xs text-gray-400" style="float:right;">
+                                    {{ $post->user->name }}
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -25,14 +25,18 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-
-Route::get('/{id}/posts', [ProfileController::class, 'posts'])->middleware(['auth', 'verified'])->name('my_posts');
-
 // POSTS
 
 Route::get('/posts', [PostController::class, 'index'])->middleware(['auth', 'verified'])->name('posts');
 
+Route::get('/posts/create', [PostController::class, 'create'])->middleware(['auth', 'verified'])->name('post_create');
+
+Route::post('/posts', [PostController::class, 'store'])->middleware(['auth', 'verified'])->name('post_store');
+
 Route::get('/posts/{id}', [PostController::class, 'show'])->middleware(['auth', 'verified']);
+
+Route::get('/{id}/posts', [ProfileController::class, 'posts'])->middleware(['auth', 'verified'])->name('my_posts');
+
 
 
 
