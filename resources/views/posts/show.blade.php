@@ -47,7 +47,7 @@
                             {{ $comment->user->name }}
 
                             <div class="text-sm" style="float:left;padding-top: 1.75rem;padding-bottom:1.25rem;">
-                                @if (Auth::User()->id === $comment->author_id)
+                                @if (Auth::User()->id === $comment->author_id ?? Auth::User()->role === 'admin')
                                     @livewire('delete-comment', ['comment_id' => $comment->id])
                                 @endif
                             </div>
