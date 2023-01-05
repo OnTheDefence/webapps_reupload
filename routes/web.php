@@ -20,6 +20,10 @@ Route::get('/', function () {
     return redirect('/posts');
 });
 
+Route::get('/dashboard', function () {
+    return redirect('/posts');
+});
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -45,6 +49,8 @@ Route::post('/posts/{id}/comment', [CommentController::class, 'store'])->middlew
 
 Route::delete('/posts/{id}/comment/delete', [CommentController::class, 'destroy'])->middleware(['auth', 'verified'])->name('delete_comment');
 
+
+Route::post('/profile', [ProfileController::class, 'updateRole'])->middleware(['auth', 'verified'])->name('role_update');
 
 
 

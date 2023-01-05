@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -102,6 +103,6 @@ class PostController extends Controller
         $user_id = $post->author_id;
         $post->delete();
         session()->flash('message', 'post deleted');
-        return redirect()->route('my_posts', ['id' => $user_id])->with('message', 'Post was deleted.');
+        return redirect()->route('my_posts', ['id' => Auth::User()->id])->with('message', 'Post was deleted.');
     }
 }

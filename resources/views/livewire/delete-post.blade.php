@@ -9,7 +9,6 @@
                 {{'Delete'}}
             </button>
 
-
             <button type="button" wire:click="openDiv" class="text-white">{{'Cancel'}}</button>  
         </form>
     </div> 

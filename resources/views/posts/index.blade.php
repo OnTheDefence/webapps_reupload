@@ -1,10 +1,21 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-gray-800 dark:text-gray-200 leading-tight float-left" style="font-size: 2.25rem;">
-            {{ __('Posts') }}
-        </h2>
+    @if (Route::currentRouteName() === "my_posts")
+        <x-slot name="header">
+            <h2 class="font-semibold text-gray-800 dark:text-gray-200 leading-tight float-left" style="font-size: 2.25rem;">
+                {{ __($user->name . "'s Posts") }}
+            </h2>
 
-    </x-slot>
+        </x-slot>
+    @else
+        <x-slot name="header">
+            <h2 class="font-semibold text-gray-800 dark:text-gray-200 leading-tight float-left" style="font-size: 2.25rem;">
+                {{ __('Posts') }}
+            </h2>
+
+        </x-slot>
+    @endif
+
+
     @livewire('create-post')
     @if ($posts->total() > 5)
         @foreach ($posts as $post)

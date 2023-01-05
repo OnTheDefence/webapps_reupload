@@ -38,16 +38,21 @@ class ProfileController extends Controller
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
 
+    public function updateRole(Request $request){
+        $user = User::where('email', $request->user_email)->first();
+        $user->role = $request->role;
+        $user->save();
 
-    /**
-     * Update the user's profile information.
-     */
+        return Redirect::route('profile.edit')->with('status', 'role-updated');
+    }
+
+
     public function posts($id)
     {
         $user = User::find($id);
         $posts = collect($user->posts)->paginate(5);
 
-        return view('posts.index', ['posts' => $posts]);
+        return view('posts.index', ['posts' => $posts, 'user' => $user]);
     }
 
 

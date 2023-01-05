@@ -16,7 +16,7 @@
             </div>
 
             <div class="text-base" style="float:right;padding-bottom:1rem;">
-                @if (Auth::User()->id === $post->author_id)
+                @if (Auth::User()->id === $post->author_id or Auth::User()->role == 'admin')
                     @livewire('delete-post', ['post_id' => $post->id])
                 @endif
             </div>
@@ -47,7 +47,7 @@
                             {{ $comment->user->name }}
 
                             <div class="text-sm" style="float:left;padding-top: 1.75rem;padding-bottom:1.25rem;">
-                                @if (Auth::User()->id === $comment->author_id ?? Auth::User()->role === 'admin')
+                                @if (Auth::User()->id === $comment->author_id or Auth::User()->role == 'admin')
                                     @livewire('delete-comment', ['comment_id' => $comment->id])
                                 @endif
                             </div>
