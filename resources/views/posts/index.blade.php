@@ -15,8 +15,9 @@
         </x-slot>
     @endif
 
-
-    @livewire('create-post')
+    @if (Route::currentRouteName() === "posts" or (Route::currentRouteName() === "my_posts" && Auth::User()->id === $user->id))
+        @livewire('create-post')
+    @endif
     @if ($posts->total() > 5)
         @foreach ($posts as $post)
         <div class="py-6">
@@ -27,7 +28,9 @@
                             <div class="text-base">
                                 {{ $post->title }}
                                 <div class="text-xs text-gray-400" style="float:right;">
-                                    {{ $post->user->name }}
+                                    <a href="{{route('my_posts', ['id' => $post->user->id ])}}">
+                                        {{ $post->user->name }}
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -58,7 +61,9 @@
                                 <div class="text-base">
                                     {{ $post->title }}
                                     <div class="text-xs text-gray-400" style="float:right;">
-                                        {{ $post->user->name }}
+                                        <a href="{{route('my_posts', ['id' => $post->user->id ])}}">
+                                            {{ $post->user->name }}
+                                        </a>
                                     </div>
                                 </div>
                             </div>

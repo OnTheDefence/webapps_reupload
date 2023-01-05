@@ -6,7 +6,9 @@
 
                 <div class="text-gray-400 text-base py-1" style="float:right;">
                     <div style="float:right;">
-                        {{ $post->user->name }}
+                        <a href="{{route('my_posts', ['id' => $post->user->id ])}}">
+                            {{ $post->user->name }}
+                        </a>
                     </div>
                 </div>
 
@@ -44,7 +46,9 @@
                     <div class="text-base">
                         {{ $comment->content }}
                         <div class="text-sm text-gray-400" style="float:right;">
-                            {{ $comment->user->name }}
+                            <a href="{{route('my_posts', ['id' => $comment->user->id ])}}">
+                                {{ $comment->user->name }}
+                            </a>
 
                             <div class="text-sm" style="float:left;padding-top: 1.75rem;padding-bottom:1.25rem;">
                                 @if (Auth::User()->id === $comment->author_id or Auth::User()->role == 'admin')
