@@ -3,11 +3,11 @@
         <x-slot name="header">
             <h2 class="font-semibold text-gray-800 dark:text-gray-200 leading-tight float-left" style="font-size: 2.25rem;">
                 @if ($user->image != null)
-                    <div style="margin-left:2rem;padding-bottom:1.75rem;width:4rem;height:4rem;float:right;">
+                    <div style="margin-left:2rem;padding-bottom:1.75rem;width:4rem;height:4rem;max-width:4rem;max-height:4rem;float:right;">
                         <img class="image" src="{{ asset('/images/'.$user->image->url) }}" alt="{{$user->name}}'s profile picture">
                     </div>
                 @else
-                    <div style="margin-left:2rem;padding-bottom:1.75rem;width:4rem;height:4rem;float:right;">
+                    <div style="margin-left:2rem;padding-bottom:1.75rem;width:4rem;height:4rem;max-width:4rem;max-height:4rem;float:right;">
                         <img class="image" src="{{ asset('/images/user.png') }}" alt="Default Profile Picture">
                     </div>
                 @endif
@@ -39,11 +39,11 @@
                                 <div class="text-xs text-gray-400" style="float:right;">
                                     <a href="{{route('my_posts', ['id' => $post->user->id ])}}">
                                         @if ($post->user->image != null && Route::currentRouteName() === "posts")
-                                            <div style="margin-left:2rem;margin-bottom:2rem;padding-bottom:1.75rem;width:4rem;height:4rem;float:right;">
+                                            <div style="margin-left:2rem;margin-bottom:2rem;padding-bottom:1.75rem;width:4rem;height:4rem;max-width:4rem;max-height:4rem;float:right;">
                                                 <img class="image" src="{{ asset('/images/'.App\Models\User::find(Auth::User()->id)->image->url) }}" alt="{{Auth::User()->name}}'s profile picture">
                                             </div>
                                         @elseif (Route::currentRouteName() === "posts")
-                                            <div style="margin-left:2rem;margin-bottom:2rem;padding-bottom:1.75rem;width:4rem;height:4rem;float:right;">
+                                            <div style="margin-left:2rem;margin-bottom:2rem;padding-bottom:1.75rem;width:4rem;height:4rem;max-width:4rem;max-height:4rem;float:right;">
                                                 <img class="image" src="{{ asset('/images/user.png') }}" alt="Default Profile Picture">
                                             </div>
                                         @endif
@@ -88,11 +88,11 @@
                                     <div class="text-xs text-gray-400" style="float:right;">
                                         <a href="{{route('my_posts', ['id' => $post->user->id ])}}">
                                             @if ($post->user->image != null && Route::currentRouteName() === "posts")
-                                                <div style="margin-left:2rem;margin-bottom:2rem;padding-bottom:1.75rem;width:4rem;height:4rem;float:right;">
+                                                <div style="margin-left:2rem;margin-bottom:2rem;padding-bottom:1.75rem;width:4rem;height:4rem;max-width:4rem;max-height:4rem;float:right;">
                                                     <img class="image" src="{{ asset('/images/'.App\Models\User::find(Auth::User()->id)->image->url) }}" alt="{{Auth::User()->name}}'s profile picture">
                                                 </div>
                                             @elseif (Route::currentRouteName() === "posts")
-                                                <div style="margin-left:2rem;margin-bottom:2rem;padding-bottom:1.75rem;width:4rem;height:4rem;float:right;">
+                                                <div style="margin-left:2rem;margin-bottom:2rem;padding-bottom:1.75rem;width:4rem;height:4rem;max-width:4rem;max-height:4rem;float:right;">
                                                     <img class="image" src="{{ asset('/images/user.png') }}" alt="Default Profile Picture">
                                                 </div>
                                             @endif

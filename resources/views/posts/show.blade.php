@@ -10,11 +10,11 @@
                             {{ $post->user->name }}
 
                             @if ($post->user->image != null)
-                                <div style="margin-left:2rem;padding-bottom:1.75rem;width:4rem;height:4rem;float:right;">
+                                <div style="margin-left:2rem;padding-bottom:1.75rem;width:4rem;height:4rem;max-width:4rem;max-height:4rem;float:right;">
                                     <img class="image" src="{{ asset('/images/'.$post->user->image->url) }}" alt="{{$post->user->name}}'s profile picture">
                                 </div>
                             @else
-                                <div style="margin-left:2rem;padding-bottom:1.75rem;width:4rem;height:4rem;float:right;">
+                                <div style="margin-left:2rem;padding-bottom:1.75rem;width:4rem;height:4rem;max-width:4rem;max-height:4rem;float:right;">
                                     <img class="image" src="{{ asset('/images/user.png') }}" alt="Default Profile Picture">
                                 </div>
                             @endif
@@ -90,12 +90,12 @@
                                 {{ $comment->user->name }}
                                 </div>
 
-                                @if ($post->user->image != null)
-                                    <div style="margin-left:2rem;margin-bottom:2rem;padding-bottom:1.75rem;width:4rem;height:4rem;float:right;">
-                                        <img class="image" src="{{ asset('/images/'.$post->user->image->url) }}" alt="{{$post->user->name}}'s profile picture">
+                                @if ($comment->user->image != null)
+                                    <div style="margin-left:2rem;margin-bottom:2rem;padding-bottom:1.75rem;width:4rem;height:4rem;max-width:4rem;max-height:4rem;float:right;">
+                                        <img class="image" src="{{ asset('/images/'.$comment->user->image->url) }}" alt="{{$comment->user->name}}'s profile picture">
                                     </div>
                                 @else
-                                    <div style="margin-left:2rem;margin-bottom:2rem;padding-bottom:1.75rem;width:4rem;height:4rem;float:right;">
+                                    <div style="margin-left:2rem;margin-bottom:2rem;padding-bottom:1.75rem;width:4rem;height:4rem;max-width:4rem;max-height:4rem;float:right;">
                                         <img class="image" src="{{ asset('/images/user.png') }}" alt="Default Profile Picture">
                                     </div>
                                 @endif

@@ -47,7 +47,7 @@ class CommentController extends Controller
         $a->save();
 
         session()->flash('message', 'comment created');
-        return redirect()->route('single_post', ['id' => $request->post_id]);
+        return redirect()->route('comment-notification', ['id' => $a->post_id]);
     }
 
     /**

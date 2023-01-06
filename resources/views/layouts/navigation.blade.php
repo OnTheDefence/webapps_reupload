@@ -22,6 +22,12 @@
                         {{ __('My Posts') }}
                     </x-nav-link>
                 </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('notifications')" :active="request()->routeIs('notifications')">
+                        {{ __('Notifications ('. App\Models\User::find(Auth::User()->id)->unreadNotifications->count() . ' unread)') }}
+                    </x-nav-link>
+                </div>
                 
             </div>
 
@@ -29,11 +35,11 @@
             <div class="hidden sm:flex sm:items-center sm:ml-6">
                 <div style="float:left;">
                     @if (App\Models\User::find(Auth::User()->id)->image != null)
-                        <div style="width:3rem;height:3rem;display:block;">
+                        <div style="width:3rem;height:3rem;max-width:2rem;max-height:2rem;display:block;">
                             <img class="image" src="{{ asset('/images/'.App\Models\User::find(Auth::User()->id)->image->url) }}" alt="{{Auth::User()->name}}'s profile picture">
                         </div>
                     @else
-                        <div style="width:2rem;height:2rem;display:block;padding-top:1rem;">
+                        <div style="width:2rem;height:2rem;max-width:2rem;max-height:2rem;display:block;">
                             <img class="image" src="{{ asset('/images/user.png') }}" alt="Default Profile Picture">
                         </div>
                     @endif

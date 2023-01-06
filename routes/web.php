@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\TagController;
+use App\Http\Controllers\NotificationController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -47,6 +48,12 @@ Route::delete('/posts/{id}/delete', [PostController::class, 'destroy'])->middlew
 
 
 Route::post('/posts/{id}/comment', [CommentController::class, 'store'])->middleware(['auth', 'verified'])->name('comment_store');
+
+Route::get('/notifications', [NotificationController::class, 'index'])->middleware(['auth', 'verified'])->name('notifications');
+
+Route::get('/notifications/{user_id}/read/{id}/{post_id}', [NotificationController::class, 'ReadNotification'])->middleware(['auth', 'verified'])->name('read_notification');
+
+Route::get('/posts/{id}/comment/send-notification', [NotificationController::class, 'NewCommentOnPost'])->middleware(['auth', 'verified'])->name('comment-notification');
 
 Route::post('/posts/{id}/tag/create', [TagController::class, 'store'])->middleware(['auth', 'verified'])->name('create_tag');
 
