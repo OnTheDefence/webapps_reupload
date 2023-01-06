@@ -59,8 +59,9 @@ Route::delete('/posts/{id}/comment/delete', [CommentController::class, 'destroy'
 
 Route::post('/profile', [ProfileController::class, 'updateRole'])->middleware(['auth', 'verified'])->name('role_update');
 
-Route::delete('/profile/tag/delete', [TagController::class, 'destroy'])->middleware(['auth', 'verified'])->name('delete_tag');
+Route::post('/profile/picture/update', [ProfileController::class, 'uploadProfilePicture'])->middleware(['auth', 'verified'])->name('update_profile_picture');
 
+Route::delete('/profile/tag/delete', [TagController::class, 'destroy'])->middleware(['auth', 'verified'])->name('delete_tag');
 
 
 require __DIR__.'/auth.php';

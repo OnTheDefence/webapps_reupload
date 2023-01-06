@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\Image;
 use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
@@ -39,6 +40,7 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        //dd($request);
         $validatedData = $request->validate([
             'title' => 'required',
             'content' => 'required',
@@ -51,6 +53,19 @@ class PostController extends Controller
         $a->likes = 0;
         $a->save();
 
+
+        if($request->hasFile('image')){
+            $url = $request->file('image')->store('', ['disk' => 'images']);
+            
+            $image = new Image;
+            $image->url = $url;
+
+            
+            $a->image()->save($image);
+        }
+
+
+        
         session()->flash('message', 'post created');
         return redirect()->route('single_post', ['id' => $a->id]);
     }

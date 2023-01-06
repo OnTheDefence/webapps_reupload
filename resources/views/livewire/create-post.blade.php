@@ -8,7 +8,7 @@
                         <div style="font-size: 1.75rem;">
                             {{ "Create Post" }}
                         </div>
-                        <form method="post" action="{{ route('post_store') }}" class="mt-6 space-y-6">
+                        <form method="post" action="{{ route('post_store') }}" class="mt-6 space-y-6" enctype="multipart/form-data">
                             @csrf
                     
                             <div>
@@ -21,6 +21,10 @@
                                 <x-input-label for="content" :value="__('Content')" />
                                 <x-text-input id="content" name="content" type="text" class="mt-1 block w-full"/>
                                 <x-input-error class="mt-2" :messages="$errors->get('content')" />
+                            </div>
+
+                            <div style="float:right;">
+                                <input type="file" name="image">
                             </div>
                     
                             <div class="flex items-center gap-4">

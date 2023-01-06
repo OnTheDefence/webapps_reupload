@@ -20,4 +20,9 @@ class Post extends Model
     public function tags(){
         return $this->belongsToMany('App\Models\Tag');
     }
+
+    public function image()
+    {
+        return $this->morphOne('App\Models\Image', 'imageable');
+    }
 }

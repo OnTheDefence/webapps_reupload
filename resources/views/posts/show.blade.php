@@ -8,6 +8,16 @@
                     <div style="float:right;">
                         <a href="{{route('my_posts', ['id' => $post->user->id ])}}">
                             {{ $post->user->name }}
+
+                            @if ($post->user->image != null)
+                                <div style="margin-left:2rem;padding-bottom:1.75rem;width:4rem;height:4rem;float:right;">
+                                    <img class="image" src="{{ asset('/images/'.$post->user->image->url) }}" alt="{{$post->user->name}}'s profile picture">
+                                </div>
+                            @else
+                                <div style="margin-left:2rem;padding-bottom:1.75rem;width:4rem;height:4rem;float:right;">
+                                    <img class="image" src="{{ asset('/images/user.png') }}" alt="Default Profile Picture">
+                                </div>
+                            @endif
                         </a>
                     </div>
                 </div>
@@ -53,6 +63,12 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <div class="text-xl">
                         {{ $post->content }}
+
+                        @if ($post->image != null)
+                            <div style="float:right;padding-bottom:1.75rem;max-width:50rem;background-size:contain;">
+                                <img class="image" src="{{ asset('/images/'.$post->image->url) }}" alt="{{$post->user->name}}'s post's image">
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -70,10 +86,22 @@
                         {{ $comment->content }}
                         <div class="text-sm text-gray-400" style="float:right;">
                             <a href="{{route('my_posts', ['id' => $comment->user->id ])}}">
+                                <div style="width:15rem;">
                                 {{ $comment->user->name }}
+                                </div>
+
+                                @if ($post->user->image != null)
+                                    <div style="margin-left:2rem;margin-bottom:2rem;padding-bottom:1.75rem;width:4rem;height:4rem;float:right;">
+                                        <img class="image" src="{{ asset('/images/'.$post->user->image->url) }}" alt="{{$post->user->name}}'s profile picture">
+                                    </div>
+                                @else
+                                    <div style="margin-left:2rem;margin-bottom:2rem;padding-bottom:1.75rem;width:4rem;height:4rem;float:right;">
+                                        <img class="image" src="{{ asset('/images/user.png') }}" alt="Default Profile Picture">
+                                    </div>
+                                @endif
                             </a>
 
-                            <div class="text-sm" style="float:left;padding-top: 1.75rem;padding-bottom:1.25rem;">
+                            <div class="text-sm" style="padding-bottom:1.25rem;">
                                 @if (Auth::User()->id === $comment->author_id or Auth::User()->role == 'admin')
                                     @livewire('delete-comment', ['comment_id' => $comment->id])
                                 @endif

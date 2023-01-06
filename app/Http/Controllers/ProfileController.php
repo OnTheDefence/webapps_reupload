@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 use App\Models\User;
+use App\Models\Image;
 
 class ProfileController extends Controller
 {
@@ -36,6 +37,26 @@ class ProfileController extends Controller
         $request->user()->save();
 
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
+    }
+
+    public function uploadProfilePicture(Request $request)
+    {
+        $validatedData = $request->validate([
+            'image' => 'required',
+        ]);
+        $url = $request->file('image')->store('', ['disk' => 'images']);
+            
+        $image = new Image;
+        $image->url = $url;
+        $user = User::find($request->user_id);
+
+        if ($user->image != null){
+            $user->image()->delete();
+        }
+        
+        $user->image()->save($image);
+
+        return redirect()->route('profile.edit')->with('status', 'profile picture updated');
     }
 
     public function updateRole(Request $request){
