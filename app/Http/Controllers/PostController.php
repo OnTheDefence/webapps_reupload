@@ -52,7 +52,7 @@ class PostController extends Controller
         $a->save();
 
         session()->flash('message', 'post created');
-        return redirect()->route('my_posts', ['id' => $request->user()->id]);
+        return redirect()->route('single_post', ['id' => $a->id]);
     }
 
     /**

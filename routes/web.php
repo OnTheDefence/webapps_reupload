@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\TagController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -47,10 +48,14 @@ Route::delete('/posts/{id}/delete', [PostController::class, 'destroy'])->middlew
 
 Route::post('/posts/{id}/comment', [CommentController::class, 'store'])->middleware(['auth', 'verified'])->name('comment_store');
 
+Route::post('/posts/{id}/create_tag', [TagController::class, 'store'])->middleware(['auth', 'verified'])->name('create_tag');
+
 Route::delete('/posts/{id}/comment/delete', [CommentController::class, 'destroy'])->middleware(['auth', 'verified'])->name('delete_comment');
 
 
 Route::post('/profile', [ProfileController::class, 'updateRole'])->middleware(['auth', 'verified'])->name('role_update');
+
+Route::delete('/profile/delete_tag', [TagController::class, 'destroy'])->middleware(['auth', 'verified'])->name('delete_tag');
 
 
 
