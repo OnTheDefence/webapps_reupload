@@ -4,7 +4,7 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 
-class AddTag extends Component
+class RemoveTag extends Component
 {
     public $showDiv = false;
 
@@ -13,7 +13,7 @@ class AddTag extends Component
 
     public function render()
     {
-        return view('livewire.add-tag');
+        return view('livewire.remove-tag');
     }
     
     public function openDiv()

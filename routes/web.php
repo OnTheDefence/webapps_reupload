@@ -48,14 +48,18 @@ Route::delete('/posts/{id}/delete', [PostController::class, 'destroy'])->middlew
 
 Route::post('/posts/{id}/comment', [CommentController::class, 'store'])->middleware(['auth', 'verified'])->name('comment_store');
 
-Route::post('/posts/{id}/create_tag', [TagController::class, 'store'])->middleware(['auth', 'verified'])->name('create_tag');
+Route::post('/posts/{id}/tag/create', [TagController::class, 'store'])->middleware(['auth', 'verified'])->name('create_tag');
+
+Route::post('/posts/{id}/tag/attach', [TagController::class, 'attach'])->middleware(['auth', 'verified'])->name('attach_tag');
+
+Route::post('/posts/{id}/tag/detach', [TagController::class, 'detach'])->middleware(['auth', 'verified'])->name('detach_tag');
 
 Route::delete('/posts/{id}/comment/delete', [CommentController::class, 'destroy'])->middleware(['auth', 'verified'])->name('delete_comment');
 
 
 Route::post('/profile', [ProfileController::class, 'updateRole'])->middleware(['auth', 'verified'])->name('role_update');
 
-Route::delete('/profile/delete_tag', [TagController::class, 'destroy'])->middleware(['auth', 'verified'])->name('delete_tag');
+Route::delete('/profile/tag/delete', [TagController::class, 'destroy'])->middleware(['auth', 'verified'])->name('delete_tag');
 
 
 

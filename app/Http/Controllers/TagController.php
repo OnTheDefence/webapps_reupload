@@ -60,6 +60,15 @@ class TagController extends Controller
         return redirect()->route('single_post', ['id' => $post->id]);
     }
 
+    public function detach(Request $request)
+    {
+        $tag = Tag::find($request->tag_id);
+        $post = Post::find($request->post_id);
+        $post->tags()->detach($tag);
+
+        return redirect()->route('single_post', ['id' => $post->id]);
+    }
+
     /**
      * Display the specified resource.
      *
