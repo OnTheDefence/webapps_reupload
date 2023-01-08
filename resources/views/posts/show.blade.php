@@ -28,6 +28,14 @@
                         {{ $tag->name . ","}}
                     @endforeach
                 </div>
+
+                @if (Auth::User()->id === $post->author_id or Auth::User()->role == 'admin')
+                    <div class="text-red-400 text-sm py-1">
+                        <a href="{{route('post_show_edit', ['id' => $post->id])}}">
+                            {{ "Edit post" }}
+                        </a>
+                    </div>
+                @endif
             </div>
 
             <div class="text-base" style="float:right;padding-bottom:1rem;">
@@ -84,6 +92,15 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <div class="text-base">
                         {{ $comment->content }}
+
+                        @if (Auth::User()->id === $comment->author_id or Auth::User()->role == 'admin')
+                            <div class="text-red-400 text-sm py-1">
+                                <a href="{{route('comment_show_edit', ['id' => $comment->id])}}">
+                                    {{ "Edit comment" }}
+                                </a>
+                            </div>
+                        @endif
+
                         <div class="text-sm text-gray-400" style="float:right;">
                             <a href="{{route('my_posts', ['id' => $comment->user->id ])}}">
                                 <div style="width:15rem;">

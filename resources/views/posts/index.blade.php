@@ -40,7 +40,7 @@
                                     <a href="{{route('my_posts', ['id' => $post->user->id ])}}">
                                         @if ($post->user->image != null && Route::currentRouteName() === "posts")
                                             <div style="margin-left:2rem;margin-bottom:2rem;padding-bottom:1.75rem;width:4rem;height:4rem;max-width:4rem;max-height:4rem;float:right;">
-                                                <img class="image" src="{{ asset('/images/'.App\Models\User::find(Auth::User()->id)->image->url) }}" alt="{{Auth::User()->name}}'s profile picture">
+                                                <img class="image" src="{{ asset('/images/'.App\Models\User::find($post->user->id)->image->url) }}" alt="{{$post->user->name}}'s profile picture">
                                             </div>
                                         @elseif (Route::currentRouteName() === "posts")
                                             <div style="margin-left:2rem;margin-bottom:2rem;padding-bottom:1.75rem;width:4rem;height:4rem;max-width:4rem;max-height:4rem;float:right;">

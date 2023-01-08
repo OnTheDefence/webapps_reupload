@@ -14,7 +14,7 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <div class="text-base">
                         <a href="{{route('read_notification', ['user_id' => Auth::User()->id,'id' => $notification->id, 'post_id' => $notification->data['post_id']])}}">
-                            {{ "Someone has commented on your post: ". App\Models\Post::find($notification->data['post_id'])->title}}
+                            {{ "Someone has interacted with your post: ". App\Models\Post::find($notification->data['post_id'])->title . "!"}}
                         </a>
                     </div>
                 </div>

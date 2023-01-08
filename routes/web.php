@@ -42,6 +42,14 @@ Route::post('/posts', [PostController::class, 'store'])->middleware(['auth', 've
 
 Route::get('/posts/{id}', [PostController::class, 'show'])->middleware(['auth', 'verified'])->name('single_post');
 
+Route::get('/posts/{id}/edit', [PostController::class, 'show_edit'])->middleware(['auth', 'verified'])->name('post_show_edit');
+
+Route::post('/posts/{id}/edit', [PostController::class, 'update'])->middleware(['auth', 'verified'])->name('post_edit');
+
+Route::get('/posts/comment/{id}/edit', [CommentController::class, 'show_edit'])->middleware(['auth', 'verified'])->name('comment_show_edit');
+
+Route::post('/posts/comment/{id}/edit', [CommentController::class, 'update'])->middleware(['auth', 'verified'])->name('comment_edit');
+
 Route::get('/{id}/posts', [ProfileController::class, 'posts'])->middleware(['auth', 'verified'])->name('my_posts');
 
 Route::delete('/posts/{id}/delete', [PostController::class, 'destroy'])->middleware(['auth', 'verified'])->name('delete_post');

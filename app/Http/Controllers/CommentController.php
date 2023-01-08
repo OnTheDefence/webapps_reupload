@@ -61,6 +61,13 @@ class CommentController extends Controller
         //
     }
 
+    public function show_edit($id)
+    {
+        $comment = Comment::findOrFail($id);
+
+        return view('comment.edit', ['comment' => $comment]);
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -81,7 +88,15 @@ class CommentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $comment = Comment::find($id);
+        $validatedData = $request->validate([
+            'content' => 'required',
+        ]);
+
+        $comment->content = $validatedData['content'];
+        $comment->save();
+        session()->flash('message', 'comment-edited');
+        return redirect()->route('single_post', ['id' => $comment->post->id]);
     }
 
     /**
@@ -96,6 +111,6 @@ class CommentController extends Controller
         $post_id = $comment->post_id;
         $comment->delete();
         session()->flash('message', 'comment deleted');
-        return redirect()->route('single_post', ['id' => $post_id])->with('message', 'Comment was deleted.');
+        return redirect()->route('comment-notification', ['id' => $post_id]);
     }
 }

@@ -83,6 +83,13 @@ class PostController extends Controller
         return view('posts.show', ['post' => $post]);
     }
 
+    public function show_edit($id)
+    {
+        $post = Post::findOrFail($id);
+
+        return view('posts.edit', ['post' => $post]);
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -103,7 +110,15 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $post = Post::find($id);
+        $validatedData = $request->validate([
+            'content' => 'required',
+        ]);
+
+        $post->content = $validatedData['content'];
+        $post->save();
+        session()->flash('message', 'post-edited');
+        return redirect()->route('single_post', ['id' => $post->id]);
     }
 
     /**
