@@ -50,7 +50,6 @@ class PostController extends Controller
         $a->title = $validatedData['title'];
         $a->content = $validatedData['content'];
         $a->author_id = $request->user()->id;
-        $a->likes = 0;
         $a->save();
 
 

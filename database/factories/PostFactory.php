@@ -20,7 +20,6 @@ class PostFactory extends Factory
             'author_id' => fake()->numberBetween(1,25),
             'title' => fake()->text(25),
             'content' => fake()->text(),
-            'likes' => fake()->randomNumber(3, false),
         ];
     }
 }

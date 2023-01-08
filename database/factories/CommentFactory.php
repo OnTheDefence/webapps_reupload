@@ -20,7 +20,6 @@ class CommentFactory extends Factory
             'post_id' => fake()->numberBetween(1,25),
             'author_id' => fake()->numberBetween(1,25),
             'content' => fake()->text(20),
-            'likes' => fake()->randomNumber(3, false),
         ];
     }
 }
