@@ -57,6 +57,10 @@
                                         {{ $tag->name . ","}}
                                     @endforeach
                                 </div>
+
+                                <div class="pt-2">
+                                    @livewire('like-post', ['post' => $post])
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -97,6 +101,17 @@
                                                 </div>
                                             @endif
                                         </a>
+                                    </div>
+
+                                    <div class="text-gray-400 text-xs py-1">
+                                        {{ "Tags:" }}
+                                        @foreach ($post->tags as $tag)
+                                            {{ $tag->name . ","}}
+                                        @endforeach
+                                    </div>
+    
+                                    <div class="pt-2">
+                                        @livewire('like-post', ['post' => $post])
                                     </div>
                                 </div>
                             </div>

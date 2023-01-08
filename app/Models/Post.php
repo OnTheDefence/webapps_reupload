@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
     use HasFactory;
+    use \Conner\Likeable\Likeable;
 
     public function comments(){
         return $this->hasMany('App\Models\Comment');

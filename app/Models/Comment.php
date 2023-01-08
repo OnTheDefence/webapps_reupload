@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Comment extends Model
 {
     use HasFactory;
+    use \Conner\Likeable\Likeable;
 
     public function post(){
         return $this->belongsTo('App\Models\Post', 'post_id');

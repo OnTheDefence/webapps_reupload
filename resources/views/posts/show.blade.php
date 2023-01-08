@@ -124,6 +124,10 @@
                                 @endif
                             </div>
                         </div>
+
+                        <div class="pt-6"> 
+                            @livewire('like-comment', ['comment' => $comment])
+                        </div>
                     </div>
                 </div>
             </div>
